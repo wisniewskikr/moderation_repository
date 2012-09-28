@@ -1,0 +1,6 @@
+<Context docBase="E:/Java/Workspace_Mod/ModerationWAR/src/main/webapp/" reloadable="true" path="/ModerationWAR/">
+<Resource name="jdbc/moderationDS" auth="Container" type="javax.sql.DataSource"
+               maxActive="100" maxIdle="30" maxWait="10000"
+               username="root" password="admin" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/moderation_db"/>
+</Context>

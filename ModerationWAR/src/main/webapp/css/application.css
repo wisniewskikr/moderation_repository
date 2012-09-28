@@ -1,0 +1,39 @@
+.mainTable{
+	width: 660px; 
+	text-align: center;
+}
+
+.mainTableCell{
+	border: 1pt; 
+	border-color: aqua; 
+	border-style: solid;
+}
+
+.mainTableRowSpace{
+	height: 5px;
+}
+
+.headingRow{
+	height: 100px;
+}
+
+.headingRowUp{
+	height: 80px; 
+	text-align: center;
+}
+
+.headingRowBottom{
+	height: 10px; 
+	text-align: right;
+}
+
+.innerTable{
+	text-align: center; 
+	width: 100%;
+}
+
+.innerTableBody{
+	text-align: center; 
+	width: 100%;
+	height: 400px;
+}

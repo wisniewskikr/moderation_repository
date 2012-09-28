@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+ xmlns:aop="http://www.springframework.org/schema/aop"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.0.xsd  http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+	<context:annotation-config/>
+	<context:component-scan base-package="pl.kwisniewski" />
+   	<tx:annotation-driven transaction-manager="transactionManager"/>
+   	<context:property-placeholder location="classpath:conf/jdbc-test.properties" />
+	
+	
+	<!-- VIEW -->
+	<bean id="viewResolver"
+      	class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+      	p:prefix="/jsp/"
+      	p:suffix=".jsp"/> 
+	
+	
+	<!-- VALIDATION -->  
+    <bean id="configurationLoader"  
+        class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader"/> 
+         
+    <bean id="validator" 
+    	class="org.springmodules.validation.bean.BeanValidator"  
+        p:configurationLoader-ref="configurationLoader"/>	       
+    
+    
+     <!-- JPA -->
+     <bean id="dataSource"
+       class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+       p:url="${test_db_url}"
+       p:driverClassName="${test_db_driver}"
+       p:username="${test_db_username}"
+       p:password="${test_db_password}"/>
+     
+    <bean id="jpaAdapter"
+         class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+         p:databasePlatform="org.hibernate.dialect.MySQLDialect"/>
+         
+    <bean id="loadTimeWeaver"
+         class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
+    
+    <bean id="entityManagerFactory"
+       	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+       	p:jpaVendorAdapter-ref="jpaAdapter"
+       	p:loadTimeWeaver-ref="loadTimeWeaver"
+       	p:dataSource-ref="dataSource"
+       	p:persistenceUnitName="moderationPU-test"/>
+
+    <bean id="transactionManager" 
+    	class="org.springframework.orm.jpa.JpaTransactionManager"
+       	p:entityManagerFactory-ref="entityManagerFactory"/>
+    
+    
+    <!-- DbUnit -->
+	<bean id="abstractSpringDBUnitAnnotation" 
+    	class="pl.kwisniewski.database.abstr.AbstractSpringDBUnitAnnotation"
+    	p:url="${test_db_url}"
+        p:driverClassName="${test_db_driver}"
+        p:userName="${test_db_username}"
+        p:password="${test_db_password}"/>
+    
+    
+    <!-- Localization -->
+    <bean id="messageSource"
+	    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	    <property name="basename" value="classpath:messages-test" />
+	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	 
+	<bean id="localeChangeInterceptor"
+	    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	    <property name="paramName" value="lang" />
+	</bean>
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+	 
+	<bean id="handlerMapping"
+	    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+	        <ref bean="localeChangeInterceptor" />
+	    </property>
+	</bean>
+              
+   
+</beans>

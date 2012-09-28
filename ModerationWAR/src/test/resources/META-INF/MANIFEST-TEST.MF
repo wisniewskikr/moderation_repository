@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Chris
+Build-Jdk: 1.6.0_23-ea
+Specification-Title: Unnamed - pl.kwisniewski:ModerationWAR:war:2.0
+Specification-Version: 2.0
+Implementation-Title: Unnamed - pl.kwisniewski:ModerationWAR:war:2.0
+Implementation-Version: 2.0
+Implementation-Vendor-Id: pl.kwisniewski
+Implementation-Build: 2.0
+

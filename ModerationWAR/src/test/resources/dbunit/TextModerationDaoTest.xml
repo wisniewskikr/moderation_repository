@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+	<text_moderation id="1" company_id="1" text_id="1" text_content="Text 1" moderation_status="CHECKED" moderation_description="Moderation description 1" result_status="OK" result_description="Result description 1"/>
+	<text_moderation id="2" company_id="1" text_id="2" text_content="Text 2" moderation_status="NOT_CHECKED" moderation_description="Moderation description 2"/>
+	<text_moderation id="3" company_id="1" text_id="3" text_content="Text 3" moderation_status="NOT_CHECKED" moderation_description="Moderation description 3"/>
+</dataset>
