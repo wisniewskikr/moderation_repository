@@ -1,8 +1,0 @@
-#Sat Dec 20 09:41:25 CET 2008
-WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
-defaultDestination=F\:/Java/Tomcat 6.0/webapps/SlownikWAR-1.0.0
-defaultVariables=
-eclipse.preferences.version=1
-map|0=target/classes|F\:/Java/Tomcat 6.0/webapps/SlownikWAR-1.0.0/WEB-INF/classes|,|,|,
-map|1=src/main/webapp|,|,|,|,
-useCurrentDateForDestinationFiles=true
